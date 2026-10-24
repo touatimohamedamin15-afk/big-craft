@@ -246,6 +246,9 @@ input[type=range]::-moz-range-thumb { width: 10px; height: 20px; background: var
 .fps.show { display: block; }
 .menu-foot { margin: 8px 0 0; color: var(--window-dim); font-size: 13px; }
 .version { margin: -8px 0 0; color: #bdbdbd; font-size: 13px; text-shadow: var(--shadow); }
+.link-btn { background: none; border: 0; padding: 0; color: var(--sage); font: inherit; text-decoration: underline; cursor: pointer; }
+.auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 12px; }
+.auth-error { margin: 0 0 8px; color: #ff7a6a; font-size: 14px; }
 @media (max-width: 640px) {
   .setting { grid-template-columns: 1fr; }
   .setting input[type=range] { width: 100%; }
@@ -288,22 +291,6 @@ input[type=range]::-moz-range-thumb { width: 10px; height: 20px; background: var
 .choice.wrap { flex-wrap: wrap; justify-content: flex-end; max-width: 440px; }
 .menu-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 @media (max-width: 760px) { .wardrobe-body { grid-template-columns: 1fr; } .preview { margin: 0 auto; } }
-
-/* Freebuff promotion (hosted copies only, client/promo.ts) -------------------- */
-a.btn { display: inline-grid; place-items: center; text-decoration: none; }
-.fb-mark { width: 1em; height: 1em; vertical-align: -0.12em; margin-right: 6px; }
-.promo { width: 100%; padding: 16px; background: #0a0a0a; color: #ebebeb; border: 2px solid #000; box-shadow: inset 2px 2px 0 #82966f, inset -3px -3px 0 #34432b; }
-.promo-head { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; }
-.promo-head .fb-mark { width: 40px; height: 40px; margin: 0; flex: none; }
-.promo-kicker { margin: 0; color: #b5cea5; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; }
-.promo h2 { margin: 2px 0 0; font-size: 20px; color: #fff; text-shadow: 2px 2px 0 #1f2a19; }
-.promo p { margin: 0 0 10px; color: rgba(255,255,255,0.62); font-size: 14px; }
-.promo-points { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; padding: 0; list-style: none; }
-.promo-points li { padding: 3px 8px; background: #171717; color: #b5cea5; font-size: 13px; box-shadow: inset 1px 1px 0 #262626, inset -1px -1px 0 #000; }
-.promo-points li::before { content: '■ '; color: #9db58b; }
-.version a, .promo-line a { color: #b5cea5; }
-.promo-line { margin: 10px 0 0; font-size: 14px; }
-.pause-row .remix { background: var(--go); box-shadow: inset 2px 2px 0 var(--go-hi), inset -2px -3px 0 var(--go-lo); }
 
 /* Online: who is on, rooms, invites ------------------------------------------ */
 .online-line { display: flex; align-items: center; gap: 8px; min-height: 18px; margin: -4px 0 10px; color: var(--window-dim); font-size: 14px; }

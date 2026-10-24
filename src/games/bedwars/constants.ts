@@ -2,7 +2,7 @@ export * from '../../engine/constants'
 import { TPS } from '../../engine/constants'
 
 /** The product name shown in the window title, menus and chat. Change it once here. */
-export const BRAND = 'Buffcraft'
+export const BRAND = 'Big Craft'
 
 export const MAX_HEALTH = 20
 /** Ticks a player cannot be hurt again after a hit. */

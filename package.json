@@ -1,6 +1,6 @@
 {
-  "name": "buffcraft",
-  "productName": "Buffcraft",
+  "name": "big-craft",
+  "productName": "Big Craft",
   "private": true,
   "version": "1.0.0",
   "description": "A multiplayer voxel bed-wars game with its own game server, bots, a practice sandbox and a desktop app.",
@@ -41,8 +41,8 @@
     "miniflare": "5.20261012.0-beta"
   },
   "build": {
-    "appId": "com.example.buffcraft",
-    "productName": "Buffcraft",
+    "appId": "com.example.bigcraft",
+    "productName": "Big Craft",
     "electronVersion": "44.6.0",
     "directories": {
       "output": "release",

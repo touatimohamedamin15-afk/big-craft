@@ -8,7 +8,7 @@ import { loadSettings } from './settings'
 import { openSettings } from './settings-ui'
 import { openWardrobe } from './wardrobe'
 import { bestRoom, cleanRoomName, fetchRooms, openSeats, randomRoomName, statusLabel, type RoomInfo, type RoomList } from './rooms'
-import { FREEBUFF_MARK, freebuffUrl, promoCard, promoShown } from './promo'
+import { clearSession, sessionName, showLogin } from './login'
 import '@fontsource/pixelify-sans/400.css'
 import '@fontsource/pixelify-sans/700.css'
 import { drawTile } from '../../../engine/render/textures'
@@ -94,6 +94,7 @@ function poll(anchor: Element, update: (list: RoomList | null) => void) {
 
 /** Start screen: name, modes and settings; Play online opens the room list. URL parameters skip it (?world=sandbox&offline=1&play=1). */
 function menu() {
+  const who = sessionName()
   app.innerHTML = `
     <div class="menu" style="background-image:url(${dirtTile()})">
       <div class="menu-wrap">
@@ -110,11 +111,14 @@ function menu() {
         </div>
         <p class="menu-foot">${__SITES__ ? 'Host a casual match for up to four friends, or join with a room code. The host runs the match and must keep this tab open and visible.' : 'Online plays with people on this server: pick a room or make one and share its link.'} Solo runs bots on your own machine. The sandbox has a station for every mechanic and /bot for sparring.</p>
       </div>
-      ${promoCard()}
-      <p class="version">v${__APP_VERSION__}${promoShown() ? ` · <a href="${freebuffUrl('menu-footer')}" target="_blank" rel="noopener">${FREEBUFF_MARK}Made with Freebuff</a>` : ''}</p>
+      <p class="version">v${__APP_VERSION__}${who ? ` · Playing as ${esc(who)} <button class="link-btn" data-logout>Log out</button>` : ''}</p>
       </div>
     </div>`
   const card = app.querySelector('.menu-card')!
+  app.querySelector<HTMLButtonElement>('[data-logout]')?.addEventListener('click', () => {
+    clearSession()
+    showLogin(app, afterLogin, dirtTile())
+  })
   poll(card, (list) => {
     const line = document.getElementById('online')
     if (line) line.innerHTML = onlineLine(list)
@@ -255,7 +259,19 @@ function sitesOnline(invite?: { room: string; fast: boolean }) {
   }).catch(() => { const note = card.querySelector('#sites-auth'); if (note) note.textContent = 'Could not check online play. Try again shortly.' })
 }
 
+/** The menu, as the signed-in player sees it (also used as the post-login and post-logout callback). */
+function afterLogin(name: string) {
+  try {
+    localStorage.setItem('name', name)
+  } catch {}
+  menu()
+  // An invite link (?room=name) opens the room list with that room ready to join.
+  const invited = params.get('room')
+  if (invited) online({ room: cleanRoomName(invited) || 'main', private: params.get('private') === '1', fast: params.get('fast') === '1' })
+}
+
 if (params.get('play') === '1') {
+  // Deep links (?play=1&...) skip the login: they name their own player.
   start(
     {
       name: params.get('name') ?? (savedName() || 'Player'),
@@ -268,8 +284,7 @@ if (params.get('play') === '1') {
     params.get('offline') === '1',
   )
 } else {
-  menu()
-  // An invite link (?room=name) opens the room list with that room ready to join.
-  const invited = params.get('room')
-  if (invited) online({ room: cleanRoomName(invited) || 'main', private: params.get('private') === '1', fast: params.get('fast') === '1' })
+  const who = sessionName()
+  if (who) afterLogin(who)
+  else showLogin(app, afterLogin, dirtTile())
 }

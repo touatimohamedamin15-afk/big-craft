@@ -252,7 +252,7 @@ else if (isEntry) {
   const options = cliOptions(process.argv.slice(2))
   try {
     const { server, port } = await startServer(options)
-    console.log(`Buffcraft ${VERSION}: http://localhost:${port} (${options.workers} game ${options.workers === 1 ? 'process' : 'workers'})`)
+    console.log(`Big Craft ${VERSION}: http://localhost:${port} (${options.workers} game ${options.workers === 1 ? 'process' : 'workers'})`)
     if (options.host === '0.0.0.0') for (const ip of lanAddresses()) console.log(`  on your network: http://${ip}:${port}`)
     // Stop taking new connections, let rooms close their sockets, then exit.
     const shutdown = (signal: string) => {

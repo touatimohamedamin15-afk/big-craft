@@ -9,7 +9,6 @@ import type { Game } from './game'
 import { keyLabel, type Action } from './settings'
 import { openSettings } from './settings-ui'
 import { openWardrobe } from './wardrobe'
-import { remixButton, summaryLine } from './promo'
 import { inviteLink } from './rooms'
 
 const RESOURCE_COLORS: Record<string, string> = { iron: '#e8e8e8', gold: '#f2cf4a', diamond: '#5fe0d8', emerald: '#38d36b' }
@@ -120,7 +119,7 @@ export class Hud {
     const k = (a: Action) => (this.game.settings.keys[a] ?? []).map(keyLabel).join(' or ') || 'unbound'
     const sprint = this.game.settings.sprintMode === 'always' ? 'always on' : `${k('sprint')}${this.game.settings.doubleTapSprint ? ', or double-tap forward' : ''}`
     this.help.innerHTML = `<div class="help-card"><h1>${BRAND}</h1>
-      <div class="pause-row"><button class="btn primary" data-pause="resume">Back to game</button><button class="btn" data-pause="wardrobe">Wardrobe</button><button class="btn" data-pause="settings">Settings</button><button class="btn" data-pause="leave">Leave</button>${remixButton()}</div>
+      <div class="pause-row"><button class="btn primary" data-pause="resume">Back to game</button><button class="btn" data-pause="wardrobe">Wardrobe</button><button class="btn" data-pause="settings">Settings</button><button class="btn" data-pause="leave">Leave</button></div>
       <div class="keys">
         <span><kbd>${k('forward')}</kbd> <kbd>${k('left')}</kbd> <kbd>${k('back')}</kbd> <kbd>${k('right')}</kbd> move</span>
         <span><kbd>${k('jump')}</kbd> jump</span><span><kbd>${k('sneak')}</kbd> sneak</span><span><kbd>${sprint}</kbd> sprint</span>
@@ -212,7 +211,7 @@ export class Hud {
     const title = m.winner === 'draw' ? 'Draw' : `${TEAM_NAMES[m.winner]} wins`
     this.summary.innerHTML = `<div class="window-head"><h2>${title}</h2><button class="btn ghost" data-close>Close</button></div>
       <table><thead><tr><th>Player</th><th>Finals</th><th>Kills</th><th>Beds</th><th>Deaths</th></tr></thead><tbody>${rows}</tbody></table>
-      <p class="muted small">Back to the lobby in ${Math.round(m.lobbyIn / TPS)} seconds.</p>${summaryLine()}`
+      <p class="muted small">Back to the lobby in ${Math.round(m.lobbyIn / TPS)} seconds.</p>`
     this.summary.classList.add('show')
   }
 

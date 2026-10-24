@@ -1,4 +1,4 @@
-# Buffcraft: a voxel bed-wars game and engine
+# Big Craft: a voxel bed-wars game and engine
 
 A complete bed-wars game in the browser and on the desktop: four teams on
 floating islands, beds to defend, forges and diamond and emerald generators,
@@ -45,7 +45,10 @@ bun run loadtest       # capacity numbers (rooms, players, CPU, bandwidth)
 
 ## Playing
 
-The menu offers three ways in:
+The menu opens behind a local account: pick a name and password on the
+**Create account** tab (or **Log in** if you already have one). Accounts live
+in this browser only — the password is stored as a salted hash and nothing
+leaves the device. The menu then offers three ways in:
 
 - **Play online (Sites)**: Host creates a room; Join uses its code or invite link.
   Four people at most, including the host. The host must keep the tab visible
@@ -299,15 +302,6 @@ instead.
 
 The hosted copy at `buffcraft.freebuff.app` is this Dockerfile on Render (one
 starter instance, health check `/healthz`).
-
-### The Freebuff promotion
-
-On a page served over https, the menu shows a "Built with Freebuff" card, the
-pause menu a Remix button, and the round summary a line, all linking to
-freebuff.com with `utm_source=buffcraft`. Local and desktop runs (http) never
-show them; add `?promo=1` to see them locally. They live in
-`src/games/bedwars/client/promo.ts`; delete it and its three call sites to
-remove them.
 
 ## Troubleshooting
 

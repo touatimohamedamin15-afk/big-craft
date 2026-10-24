@@ -6,3 +6,5 @@ release
 .wrangler
 .dev.vars
 .env*
+/freebuff-sites-build/
+.logs
