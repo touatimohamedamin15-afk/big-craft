@@ -10,6 +10,8 @@ export default defineConfig({
   // Match dev-sites.mjs without colliding with another project's local helper.
   plugins: [cloudflare({ config: { durable_objects: { bindings: [{ name: 'REALTIME', class_name: 'FreebuffRealtime', script_name: localHelper }] } } })],
   define: { __SITES__: true, __APP_VERSION__: JSON.stringify(pkg.version) },
+  // Served from a domain root (Vercel, Sites, the Node server): assets live at /assets.
+  base: '/',
   server: { host: '127.0.0.1', port: 5173, strictPort: false },
   worker: { format: 'es' },
   build: { chunkSizeWarningLimit: 1200 },

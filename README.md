@@ -303,6 +303,17 @@ instead.
 The hosted copy at `buffcraft.freebuff.app` is this Dockerfile on Render (one
 starter instance, health check `/healthz`).
 
+### On Vercel
+
+`vercel.json` builds the client and serves `dist/client` as a single-page app:
+every route is rewritten to `index.html`, so a deep link or a reload no longer
+lands on Vercel's 404. Set the project's Root Directory to the repository root
+(the folder holding `package.json`).
+
+Vercel only serves files: there is no game server behind it, so on that deploy
+the login, Solo against bots and the sandbox work, while Play online needs the
+Sites or Node server above.
+
 ## Troubleshooting
 
 - **"3D graphics are not available"**: turn on hardware acceleration in the
