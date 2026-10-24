@@ -1,0 +1,25 @@
+{
+  "name": "freebuff-sites-realtime-local",
+  "main": "worker.js",
+  "compatibility_date": "2026-10-01",
+  "dev": {
+    "ip": "127.0.0.1",
+    "port": 8788
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "REALTIME",
+        "class_name": "FreebuffRealtime"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "FreebuffRealtime"
+      ]
+    }
+  ]
+}

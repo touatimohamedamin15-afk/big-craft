@@ -1,0 +1,8 @@
+{
+  "entrypoint": "index.js",
+  "compatibilityDate": "2026-10-01",
+  "modules": [{ "name": "index.js", "type": "esm", "path": "./dist/buffcraft/index.js" }],
+  "assetsDirectory": "./dist/client",
+  "spa": true,
+  "realtime": true
+}

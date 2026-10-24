@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "buffcraft",
+  "main": "src/sites/worker.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": { "binding": "ASSETS", "not_found_handling": "single-page-application", "run_worker_first": true },
+  "durable_objects": {
+    "bindings": [{ "name": "REALTIME", "class_name": "FreebuffRealtime", "script_name": "freebuff-sites-realtime-local" }]
+  }
+}
